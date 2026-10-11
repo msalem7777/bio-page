@@ -270,3 +270,207 @@ main {
     width: 100%;
   }
 }
+
+/* DOS-style preferred theme */
+
+.theme_toggle_link {
+  display: block;
+}
+
+.theme_toggle_button {
+  margin-top: 0;
+}
+
+.ascii_profile {
+  display: none;
+}
+
+/* DOS mode: make the whole page look like a plain terminal */
+.dos_theme {
+  --title_color: #ffffff;
+  --description_color: #ffffff;
+  --button_background_color: #000000;
+  --button_text_color: #ffffff;
+  --button_text_hover_color: #000000;
+  --button_border_color: #ffffff;
+  --button_border_hover_color: #ffffff;
+  --textarea_text_color: #ffffff;
+  --footer_background_color: #000000;
+  --footer_text_color: #ffffff;
+  --footer_link_text_color: #ffffff;
+
+  font-family: "Courier New", "Lucida Console", Consolas, monospace;
+  color: #ffffff;
+  background-color: #000000;
+  background-image: none;
+}
+
+/* Hide the real photo in DOS mode */
+.dos_theme .header_img img {
+  display: none;
+}
+
+/* Show the ASCII portrait only in DOS mode */
+.dos_theme .ascii_profile {
+  display: block;
+  margin: 0 0 1em 0;
+  padding: 0;
+  color: #ffffff;
+  background: #000000;
+  font-family: "Courier New", "Lucida Console", Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1;
+  white-space: pre;
+  text-align: left;
+}
+
+/* Remove all modern text effects in DOS mode */
+.dos_theme .header_text h1,
+.dos_theme .header_text h2,
+.dos_theme .main_text_item p,
+.dos_theme .footer_div_item {
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* DOS-style heading */
+.dos_theme .header_text h1 {
+  font-size: 1.8em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* DOS-style subtitle */
+.dos_theme .header_text h2 {
+  font-size: 1em;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+/* DOS-style description */
+.dos_theme .main_text_item {
+  margin-top: 1.2em;
+}
+
+.dos_theme .main_text_item p {
+  color: #ffffff;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+/* DOS-style buttons: plain rectangle, no glow, no blur, no rounded corners */
+.dos_theme .main_button_item {
+  color: #ffffff;
+  background: #000000;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  min-height: auto;
+  padding: 0.55em 1em;
+  font-family: "Courier New", "Lucida Console", Consolas, monospace;
+}
+
+/* Use text characters to create the DOS button border */
+.dos_theme .main_a_item {
+  width: min(82vw, 25em);
+  margin-top: 0.65em;
+  text-decoration: none;
+  border: 1px solid #ffffff;
+  background: #000000;
+}
+
+/* In DOS mode, the normal buttons stay white */
+.dos_theme .main_a_item:hover {
+  background: #ffffff;
+}
+
+.dos_theme .main_a_item:hover .main_button_item {
+  color: #000000;
+  background: #ffffff;
+}
+
+/* The theme button is the only green button */
+.dos_theme .theme_toggle_link {
+  border-color: #00ff66;
+}
+
+.dos_theme .theme_toggle_button {
+  color: #00ff66;
+}
+
+.dos_theme .theme_toggle_link:hover {
+  background: #00ff66;
+}
+
+.dos_theme .theme_toggle_link:hover .theme_toggle_button {
+  color: #000000;
+  background: #00ff66;
+}
+
+/* Footer should look like terminal text, not a modern footer bar */
+.dos_theme .footer_div_item {
+  color: #ffffff;
+  background: #000000;
+  border-top: 1px solid #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Obi-Wan terminal pop-in */
+.obi_wan_container {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  z-index: 1000;
+  transform: translate(-115%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.7s steps(8, end),
+    opacity 0.1s linear;
+}
+
+/* Only show Obi-Wan in DOS mode */
+body:not(.dos_theme) .obi_wan_container {
+  display: none;
+}
+
+.obi_wan_container.obi_wan_visible {
+  transform: translate(0.75em, -50%);
+  opacity: 1;
+}
+
+.obi_wan_art {
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Courier New", "Lucida Console", Consolas, monospace;
+  font-size: 0.72rem;
+  line-height: 1.05;
+  white-space: pre;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* Make only the words "Hello there" green by targeting the whole art block lightly is too crude,
+   so leave Obi-Wan white for now unless we split the text into separate spans later. */
+
+@media (max-width: 600px) {
+.dos_theme .ascii_profile {
+  font-size: 0.58rem;
+}
+
+.obi_wan_art {
+  font-size: 0.52rem;
+}
+
+.obi_wan_container {
+  top: 52%;
+}
+}
